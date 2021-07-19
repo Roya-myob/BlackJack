@@ -14,7 +14,7 @@ namespace BlackJack
             _faceValue = faceValue;
         }
             
-        public string ShowFace()
+        public string RevealFace()
         {
             return (_face + " "+ _faceValue.ToString());
         }

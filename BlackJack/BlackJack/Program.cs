@@ -7,14 +7,19 @@ namespace BlackJack
         static void Main(string[] args)
         {
             
-           // var card = new Card("Ace", 1);
+           
             //Console.WriteLine(card.ShowFace());
 
             var deck = new Deck();
             deck.BuildDeck();
-            deck.ShowDeck();
+           // deck.ShowDeck();
             deck.ShuffleDeck();
             //Console.WriteLine(deck.ShowDeck());
+
+            var blackJack = new BlackJack();
+            //blackJack.Greeting();
+            deck.RemoveCardFromDeckOfCards();
+            //deck.ShowDeck();
         }
     }
 }

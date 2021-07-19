@@ -2,6 +2,8 @@
 {
     public class Dealer
     {
-        private int _dealerScore;
+        Card _dealerCard;
+        
+
     }
 }

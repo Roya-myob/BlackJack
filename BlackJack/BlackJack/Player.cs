@@ -4,6 +4,10 @@ namespace BlackJack
 {
     public class Player
     {
-        private int _playerScore;
+        Card _playerCards;
+        
+        
+        
+        
     }
 }

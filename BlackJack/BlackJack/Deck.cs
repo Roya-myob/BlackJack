@@ -8,8 +8,8 @@ namespace BlackJack
 {
     public class Deck
     {
-        private static Card[] _deckOfCards = new Card[52];
-        //private List<Card> _deckOfCards = new List<Card>{};
+        //private static Card[] _deckOfCards = new Card[52];
+        private List<Card> _deckOfCards = new List<Card> { };
 
 
         static Deck()
@@ -29,8 +29,12 @@ namespace BlackJack
             {
                 for (var card = 0; card < 13; card++)
                 {
-                    var cards = new Card(suites[suite], card + 1);
-                    _deckOfCards[deckPosition++] = cards;
+                    string[] names = new[]
+                        {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+                    //var cards = new Card(suites[suite], card + 1);
+                    var cards = new Card(names[card], suites[suite], Math.Min(card + 1, 10));
+                    //_deckOfCards[deckPosition++] = cards;
+                    _deckOfCards.Add(cards);
                 }
             }
         }
@@ -53,7 +57,7 @@ namespace BlackJack
                 unsortedArray[i] = random.Next(0, 51);
             }
 
-            for (var i = 0; i < _deckOfCards.Length; i++)
+            for (var i = 0; i < _deckOfCards.Count; i++)
             {
                 var temp = _deckOfCards[i]; // save the card  
                 _deckOfCards[i] =
@@ -66,23 +70,16 @@ namespace BlackJack
 
             foreach (var i in _deckOfCards)
             {
-                Console.WriteLine(i.RevealFace());
+                //Console.WriteLine(i.RevealFace());
             }
         }
 
-
-        public void RemoveCardFromDeckOfCards()
+        public Card RemoveCardFromDeckOfCards()
         {
-            // we can't remove item from array, it has to be a list
-            List<Card> _deckOfCardsList = _deckOfCards.ToList();
-            
-            for (var i = 0; i < _deckOfCardsList.Count; i++)
-            {
-                _deckOfCardsList.RemoveAt(i);
-                
-                
-                Console.WriteLine("RemovedCard ---");
-            }
+            var cardsremainedInDeck = _deckOfCards.Count();
+            var drawnCard = _deckOfCards[cardsremainedInDeck - 1];
+            _deckOfCards.RemoveAt(cardsremainedInDeck - 1);
+            return drawnCard;
         }
     }
 }

@@ -1,23 +1,34 @@
-﻿using System.Xml.Schema;
+﻿using System;
+using System.Xml.Schema;
 
 namespace BlackJack
 {
     public class Card
     {
         //_ instant variable 
-        private string _face;
-        private int _faceValue;
+        private string _name; 
+        private string _suite;
+        private int _value;
 
-        public Card(string face ,int faceValue)
+        public Card( string name, string suite, int value )
         {
-            _face = face;
-            _faceValue = faceValue;
+            _suite = suite;
+            _value = value;
+            _name = name;
+
         }
             
         public string RevealFace()
         {
-            return (_face + " "+ _faceValue.ToString());
+            return (_suite + " "+ _name.ToString());
         }
+
+        public int RevealFaceValue()
+        {
+            return _value;
+        }
+        
+      
         
         
         

@@ -27,45 +27,17 @@ namespace BlackJack
                 player.AddCard(deck.RemoveCardFromDeckOfCards());
                 dealer.AddCard(deck.RemoveCardFromDeckOfCards());
             }
+            player.PlayerPlay(deck, _blackJackRules, player);
 
-            Console.WriteLine("- Player >> You are currently at " + player.ShowCardSum() + " \n  with the hand: [ " +
-                              player.ShowCard() + "]");
-
-            while (!_blackJackRules.IsBusted(player))
+            if (!player.IsPlayerBlackJacked())
             {
-                Console.WriteLine("Hit or stay? (Hit = 1, Stay = 0)");
-                int hitOrStay = Int32.Parse(Console.ReadLine());
-                if (hitOrStay == 1)
+                if (!_blackJackRules.IsBusted(player))
                 {
-                    player.AddCard(deck.RemoveCardFromDeckOfCards());
-
-                    if (!_blackJackRules.IsBusted(player))
-                    {
-                        Console.WriteLine("- Player >> You are currently at  " + player.ShowCardSum() +
-                                          " \n  with the hand: [ "
-                                          + player.ShowCard() + "]");
-                    }
-                    else
-                    {
-                        Console.WriteLine("- Player >> You are currently at " + player.ShowCardSum() + " BUST " +
-                                          " \n  with the hand: [ "
-                                          + player.ShowCard() + "]");
-                        Console.WriteLine("Dealer wins!");
-                    }
-                }
-                else if (hitOrStay == 0)
-                {
-                    break;
-                }
-            }
-
-            if (!_blackJackRules.IsBusted(player))
-            {
-                dealer.DealerPlay(dealer,deck);
-                Console.WriteLine(_blackJackRules.Score(player,dealer));
+                    dealer.DealerPlay(deck);
+                    Console.WriteLine(_blackJackRules.Score(player,dealer));
                 
+                }
             }
-
             
         }
         

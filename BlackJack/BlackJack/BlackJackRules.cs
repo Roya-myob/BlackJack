@@ -12,7 +12,7 @@ namespace BlackJack
         public bool IsBusted(Player player)
         {
             var isBusted = false;
-            if (player.ShowCardSum() >= 21)
+            if (player.ShowCardSum() > 21)
             {
                 isBusted = true;
             }
@@ -25,6 +25,8 @@ namespace BlackJack
              var playerScore = player.ShowCardSum();
              var dealerScore = dealer.ShowCardSum();
              string winner = "";
+             
+            
              if (playerScore > dealerScore)
              {
                   winner = "Player wins!";
@@ -32,6 +34,14 @@ namespace BlackJack
              if (dealerScore > playerScore)
              {
                  winner = "Dealer wins!";
+             }
+             if ( playerScore == 21)
+             {
+                 winner = "Player wins! BlackJack!";
+             }
+             if ( dealerScore == 21)
+             {
+                 winner = "Dealer wins! BlackJack!";
              }
 
              if (dealerScore == 21 & playerScore == 21)

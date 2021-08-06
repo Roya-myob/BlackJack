@@ -4,7 +4,10 @@ using System.Globalization;
 
 namespace BlackJack
 {
-    public class Dealer
+    
+    // class Dealer implements interface User
+
+    public class Dealer: Player
     {
         
         private List<Card> _dealerCards = new List<Card>{};
@@ -61,25 +64,21 @@ namespace BlackJack
                 Console.WriteLine("- Dealer is at  " + ShowCardSum() + " \n  with the hand:   ["
                                   + ShowCard() + "]");
 
-                // success: 1, 2, 3... 15, 16
-                // fail: 17, 18... 21, 22... inf
+            
                 while (ShowCardSum() < 17)
                 {
                     AddCard(deck.RemoveCardFromDeckOfCards());
                     Console.WriteLine("- Dealer draws  [" + ShowLastCard() + "]");
                     Console.WriteLine("- Dealer is at  " + ShowCardSum() + " \n  with the hand:   ["
                                       + ShowCard() + "]");
-
-                    // success: 22, 23, ... inf
-                    /*if (dealer.ShowCardSum() > 21)
-                    {
-                        break;
-                    }*/
+                    
                 }
 
                 
 
                 
         }
+
+        
     }
 }

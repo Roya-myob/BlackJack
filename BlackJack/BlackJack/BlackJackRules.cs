@@ -6,23 +6,71 @@ namespace BlackJack
 {
     public class BlackJackRules
     {
-        
-        
+        private IO _blackJackIO;
+        public BlackJackRules(IO inputOutput)
+        {
+            _blackJackIO = inputOutput;
+        }
 
-        public bool IsBusted(Player player)
+        public void GamblersTurn(Gambler gambler, Deck deck)
+        {
+            _blackJackIO.LogCurrentState(gambler);
+            while (!IsBusted(gambler))
+            {
+                if (gambler.IsGamblerBlackJacked())
+                {
+                    Console.WriteLine("Gambler BlackJacked!!");
+                    break;
+                } 
+                
+                _blackJackIO.LogHitOrStay(gambler);
+               
+                var isHitOrStay = _blackJackIO.LogReadLine(gambler);
+                if ( isHitOrStay == 1)
+                {
+                    gambler.AddCard(deck.RemoveCardFromDeckOfCards());
+
+                    if (!IsBusted(gambler))
+                    {
+                        _blackJackIO.LogCurrentState(gambler);
+
+                    }
+                    else
+                    {
+                        _blackJackIO.LogBustState(gambler);
+                    }
+                      
+                }
+                else if ( isHitOrStay == 0)
+                {
+                    break;
+                }
+            }
+        }
+
+        public bool IsBusted(Gambler gambler)
         {
             var isBusted = false;
-            if (player.ShowCardSum() > 21)
+            if (gambler.ShowCardSum() > 21)
             {
                 isBusted = true;
             }
 
             return isBusted;
         }
-
-        public string Score(Player player, Dealer dealer)
+        public void DealerTurn(Gambler gambler, Dealer dealer, Deck deck)
         {
-             var playerScore = player.ShowCardSum();
+            if (!gambler.IsGamblerBlackJacked() && !IsBusted(gambler))
+            {
+                dealer.DealerPlay(deck);
+                Console.WriteLine(Score(gambler, dealer));
+            }
+        }
+
+        public string Score(Gambler gambler, Dealer dealer)
+        {
+            _blackJackIO.LogCurrentState(dealer);
+             var playerScore = gambler.ShowCardSum();
              var dealerScore = dealer.ShowCardSum();
              string winner = "";
              
@@ -44,7 +92,7 @@ namespace BlackJack
                  winner = "Dealer wins! BlackJack!";
              }
 
-             if (dealerScore == 21 & playerScore == 21)
+             if (dealerScore == 21 && playerScore == 21)
              {
                  winner = "Tie!";
              }

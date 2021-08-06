@@ -6,8 +6,10 @@ namespace BlackJack
     {
         static void Main(string[] args)
         {
-            var blackJack = new BlackJackEngine();
+            var blackJackIO = new BlackJackIO();
+            var blackJack = new BlackJackEngine(new BlackJackRules(blackJackIO));
             blackJack.Play();
+           
            
         }
     }

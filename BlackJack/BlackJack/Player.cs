@@ -6,6 +6,8 @@
         public void AddCard(Card card); 
         public string ShowCard();
         public int ShowCardSum();
+        public int ShowCardSumWithAce();
+        public string Name();
 
     }
 }

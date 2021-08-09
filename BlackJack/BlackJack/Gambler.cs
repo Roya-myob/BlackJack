@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 
 namespace BlackJack
@@ -22,14 +23,29 @@ namespace BlackJack
         //query
         public string ShowCard()
         {
-            string cardValues = " ";
+            string cardFace = " ";
             foreach (var card in _gamblerCards)
             {
-                cardValues += card.RevealFace() + " | ";
+                cardFace += card.RevealFace() + " | ";
             }
 
-            return cardValues;
+            return cardFace;
         }
+
+        public bool AceInGamblersHand()
+        {
+            bool _aceInGamblesHand = false;
+            foreach (var card in _gamblerCards)
+            {
+                if (ShowCard().Contains("Ace"))
+                {
+                    _aceInGamblesHand = true;
+                }
+            }
+
+            return _aceInGamblesHand;
+        }
+        
 
         public int ShowCardSum()
         {
@@ -41,6 +57,29 @@ namespace BlackJack
 
             return cardValues;
         }
+
+        public int ShowCardSumWithAce()
+        {
+            int cardValue = ShowCardSum();
+
+            if (AceInGamblersHand())
+            {
+                if (cardValue <= 11)
+                {
+                    // SetAceToValue11();
+                    cardValue = cardValue + 10;
+                }
+            }
+
+
+            return cardValue;
+        }
+
+        public string Name()
+        {
+            return "Gambler";
+        }
+
 
         public bool IsGamblerBlackJacked()
         {

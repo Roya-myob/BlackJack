@@ -16,11 +16,11 @@ namespace BlackJack
             _blackJackRules = rule;
         }
 
-        public void Play()
+        public void Start()
         {
             InitiateDeck();
             Deal();
-            Start();
+            Play();
         }
 
         private void InitiateDeck()
@@ -38,7 +38,7 @@ namespace BlackJack
             }
         }
 
-        private void Start()
+        private void Play()
         {
             _blackJackRules.GamblersTurn(_gambler, deck);
              _blackJackRules.DealerTurn(_gambler, dealer, deck);

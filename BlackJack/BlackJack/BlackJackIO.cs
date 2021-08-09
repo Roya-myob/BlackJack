@@ -8,17 +8,17 @@ namespace BlackJack
     {
         public void LogCurrentState(Player player)
         {
-            Console.WriteLine("- Gambler >> You are currently at " + player.ShowCardSum() + " \n  with the hand: [ " +
+            Console.WriteLine("- " + player.Name() + " >> You are currently at " + player.ShowCardSumWithAce() + " \n  with the hand: [ " +
                               player.ShowCard() + "]");
             
             
         }
         
-        public void LogBustState(Player roya)
+        public void LogBustState(Player player)
         {
-            Console.WriteLine("- Gambler >> You are currently at " + roya.ShowCardSum() + " BUST " +
+            Console.WriteLine("- " + player.Name() + " >> You are currently at " + player.ShowCardSumWithAce() + " BUST " +
                               " \n  with the hand: [ "
-                              + roya.ShowCard() + "]");
+                              + player.ShowCard() + "]");
             
             
         }

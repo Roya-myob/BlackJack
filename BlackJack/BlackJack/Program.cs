@@ -8,7 +8,7 @@ namespace BlackJack
         {
             var blackJackIO = new BlackJackIO();
             var blackJack = new BlackJackEngine(new BlackJackRules(blackJackIO));
-            blackJack.Play();
+            blackJack.Start();
            
            
         }

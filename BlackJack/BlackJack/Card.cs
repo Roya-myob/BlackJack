@@ -17,6 +17,11 @@ namespace BlackJack
             _name = name;
 
         }
+
+        public int UpdateValueTo11()
+        {
+            return  _value = 11;
+        }
             
         public string RevealFace()
         {

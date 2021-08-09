@@ -66,36 +66,47 @@ namespace BlackJack
                 Console.WriteLine(Score(gambler, dealer));
             }
         }
+        
 
         public string Score(Gambler gambler, Dealer dealer)
         {
             _blackJackIO.LogCurrentState(dealer);
-             var playerScore = gambler.ShowCardSum();
+             var gamblerScore = gambler.ShowCardSum();
              var dealerScore = dealer.ShowCardSum();
              string winner = "";
              
             
-             if (playerScore > dealerScore)
+             if (gamblerScore > dealerScore)
              {
-                  winner = "Player wins!";
+                  winner = "Gambler wins!";
              }
-             if (dealerScore > playerScore)
+             if (dealerScore > gamblerScore)
              {
                  winner = "Dealer wins!";
              }
-             if ( playerScore == 21)
+             if ( gamblerScore == 21)
              {
-                 winner = "Player wins! BlackJack!";
+                 winner = "Gambler wins! BlackJack!";
              }
              if ( dealerScore == 21)
              {
                  winner = "Dealer wins! BlackJack!";
              }
 
-             if (dealerScore == 21 && playerScore == 21)
+             if (dealerScore == 21 && gamblerScore == 21)
              {
                  winner = "Tie!";
              }
+
+             if (dealerScore > 21 && gamblerScore <= 21)
+             {
+                 winner = "Gambler winsz!";
+             }
+             if (dealerScore == gamblerScore)
+             {
+                 winner = "Gambler winsz!";
+             }
+             
 
              return winner;
         }

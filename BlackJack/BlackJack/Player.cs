@@ -8,6 +8,13 @@
         public int ShowCardSum();
         public int ShowCardSumWithAce();
         public string Name();
+        public int GetCardCount();
+
+        public bool IsBlackJacked();
+
+        public void Play(Deck deck);
+
+        public bool IsBusted();
 
     }
 }

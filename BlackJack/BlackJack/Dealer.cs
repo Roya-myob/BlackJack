@@ -87,19 +87,41 @@ namespace BlackJack
             return "Dealer";
         }
 
-        public void DealerPlay(Deck deck)
+        public int GetCardCount()
         {
-            Console.WriteLine("- Dealer is at1  " + ShowCardSum() + " \n  with the hand:   ["
-                              + ShowCard() + "]");
+            return _dealerCards.Count;
+        }
+
+        public bool IsBlackJacked()
+        {
+            var winner = false;
+            if (ShowCardSum() == 21)
+            {
+                winner = true;
+            }
+
+            return winner;
+        }
+
+        public void Play(Deck deck)
+        {
+            // Console.WriteLine("- Dealer is at 1  " + ShowCardSum() + " \n  with the hand:   ["
+            //                   + ShowCard() + "]");
 
 
             while (ShowCardSum() < 17)
             {
-                AddCard(deck.RemoveCardFromDeckOfCards());
-                Console.WriteLine("- Dealer draws  [" + ShowLastCard() + "]");
-                Console.WriteLine("- Dealer is at  " + ShowCardSum() + " \n  with the hand:   ["
+                Console.WriteLine("- Dealer is at 2  " + ShowCardSum() + " \n  with the hand:   ["
                                   + ShowCard() + "]");
+                AddCard(deck.RemoveCardFromDeckOfCards());
+                Console.WriteLine("- Dealer draws 2  [" + ShowLastCard() + "]");
+               
             }
+        }
+
+        public bool IsBusted()
+        {
+            throw new NotImplementedException();
         }
     }
 }

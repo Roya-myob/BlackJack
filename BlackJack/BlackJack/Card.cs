@@ -18,12 +18,7 @@ namespace BlackJack
 
         }
 
-        public int UpdateValueTo11()
-        {
-            return  _value = 11;
-        }
-            
-        public string RevealFace()
+      public string RevealFace()
         {
             return (_suite + " "+ _name.ToString());
         }

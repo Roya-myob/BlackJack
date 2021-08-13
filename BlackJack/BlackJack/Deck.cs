@@ -10,11 +10,7 @@ namespace BlackJack
     {
         //private static Card[] _deckOfCards = new Card[52];
         private List<Card> _deckOfCards = new List<Card> { };
-
-
-        static Deck()
-        {
-        }
+        
 
         public void BuildDeck()
         {

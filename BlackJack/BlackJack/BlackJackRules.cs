@@ -12,12 +12,12 @@ namespace BlackJack
             _blackJackIO = inputOutput;
         }
 
-        public void GamblersTurn(Gambler gambler, Deck deck)
+        public void GamblersTurn(Player gambler, Deck deck)
         {
             _blackJackIO.LogCurrentState(gambler);
-            while (!IsBusted(gambler))
+            while (!gambler.IsBusted())
             {
-                if (gambler.IsGamblerBlackJacked())
+                if (gambler.IsBlackJacked())
                 {
                     Console.WriteLine("Gambler BlackJacked!!");
                     break;
@@ -30,7 +30,7 @@ namespace BlackJack
                 {
                     gambler.AddCard(deck.RemoveCardFromDeckOfCards());
 
-                    if (!IsBusted(gambler))
+                    if (!gambler.IsBusted())
                     {
                         _blackJackIO.LogCurrentState(gambler);
 
@@ -48,27 +48,18 @@ namespace BlackJack
             }
         }
 
-        public bool IsBusted(Gambler gambler)
+        
+        public void DealerTurn(Player gambler, Player dealer, Deck deck)
         {
-            var isBusted = false;
-            if (gambler.ShowCardSum() > 21)
+            if (!gambler.IsBlackJacked() && !gambler.IsBusted())
             {
-                isBusted = true;
-            }
-
-            return isBusted;
-        }
-        public void DealerTurn(Gambler gambler, Dealer dealer, Deck deck)
-        {
-            if (!gambler.IsGamblerBlackJacked() && !IsBusted(gambler))
-            {
-                dealer.DealerPlay(deck);
+                dealer.Play(deck);
                 Console.WriteLine(Score(gambler, dealer));
             }
         }
         
 
-        public string Score(Gambler gambler, Dealer dealer)
+        public string Score(Player gambler, Player dealer)
         {
             _blackJackIO.LogCurrentState(dealer);
              var gamblerScore = gambler.ShowCardSum();

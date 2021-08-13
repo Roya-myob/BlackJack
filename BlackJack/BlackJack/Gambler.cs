@@ -9,7 +9,7 @@ namespace BlackJack
     {
         private List<Card> _gamblerCards = new List<Card> { };
 
-        public int GetGamblersCardCount()
+        public int GetCardCount()
         {
             return _gamblerCards.Count;
         }
@@ -79,9 +79,19 @@ namespace BlackJack
         {
             return "Gambler";
         }
+        
+        public bool IsBusted()
+        {
+            var isBusted = false;
+            if (ShowCardSum() > 21)
+            {
+                isBusted = true;
+            }
 
-
-        public bool IsGamblerBlackJacked()
+            return isBusted;
+        }
+        
+        public bool IsBlackJacked()
         {
             var winner = false;
             if (ShowCardSum() == 21)
@@ -90,6 +100,11 @@ namespace BlackJack
             }
 
             return winner;
+        }
+
+        public void Play(Deck deck)
+        {
+            
         }
     }
 }

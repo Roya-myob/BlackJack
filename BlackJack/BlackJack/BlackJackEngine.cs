@@ -6,21 +6,27 @@ namespace BlackJack
 {
     public class BlackJackEngine
     {
-        //private Gambler _gambler = new Gambler();
-        //private Dealer dealer = new Dealer();
+        private Dealer _dealer;
+        private Gambler _gambler;
         private BlackJackRules _blackJackRules;
         private Deck deck = new Deck();
 
-        public BlackJackEngine(BlackJackRules rule)
+        public BlackJackEngine(
+            BlackJackRules rule,
+            Dealer dealer,
+            Gambler gambler
+        )
         {
             _blackJackRules = rule;
+            _dealer = dealer;
+            _gambler = gambler;
         }
 
-        public void Start(Player dealer, Player gambler)
+        public void Start()
         {
             InitiateDeck();
-            Deal( dealer, gambler);
-            Play(gambler, dealer);
+            Deal();
+            Play();
         }
 
         private void InitiateDeck()
@@ -29,21 +35,21 @@ namespace BlackJack
             deck.ShuffleDeck();
         }
 
-        private void Deal(Player dealer, Player gambler)
+        private void Deal()
         {
-            while (gambler.GetCardCount() < 2)
+            while (_gambler.GetCardCount() < 2)
             {
-                gambler.AddCard(deck.RemoveCardFromDeckOfCards());
-                dealer.AddCard(deck.RemoveCardFromDeckOfCards());
+                _gambler.AddCard(deck.RemoveCardFromDeckOfCards());
+                _dealer.AddCard(deck.RemoveCardFromDeckOfCards());
                
             }
 
         }
 
-        private void Play(Player gambler, Player dealer) 
+        private void Play() 
         {
-            _blackJackRules.GamblersTurn(gambler, deck);
-             _blackJackRules.DealerTurn(gambler, dealer, deck);
+            _blackJackRules.GamblersTurn(_gambler, deck);
+             _blackJackRules.DealerTurn(_gambler, _dealer, deck);
 
         }
     }

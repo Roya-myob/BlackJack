@@ -8,12 +8,14 @@ namespace BlackJack
         {
             Dealer dealer = new Dealer();
             Gambler gambler = new Gambler();
+            BlackJackIO blackJackIO = new BlackJackIO();
+            BlackJackRules blackJackRules = new BlackJackRules(blackJackIO);
            // Gambler _gambler = new Gambler();
             
-            var blackJackIO = new BlackJackIO();
-            var blackJack = new BlackJackEngine(new BlackJackRules(blackJackIO));
             
-            blackJack.Start(dealer, gambler);
+            var blackJack = new BlackJackEngine(blackJackRules, dealer, gambler);
+            
+            blackJack.Start();
         }
     }
 }

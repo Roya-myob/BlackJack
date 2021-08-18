@@ -11,7 +11,8 @@ namespace BlackJack
             Console.WriteLine("- " + player.Name() + " >> You are currently at " + player.ShowCardSumWithAce() + " \n  with the hand: [ " +
                               player.ShowCard() + "]");
             
-            
+
+
         }
         
         public void LogBustState(Player player)
@@ -27,11 +28,29 @@ namespace BlackJack
         {
             Console.WriteLine("Hit or stay? (Hit = 1, Stay = 0)");
         }
-        
-        public int LogReadLine(Player roya)
+
+        public bool MyFunc()
         {
-            int hitOrStay = Int32.Parse(Console.ReadLine());
-            return hitOrStay;
+            return true;
+        }
+        
+        public int LogReadLine(Player player)
+        {
+
+            while (true)
+            {
+                try
+                {
+                    int hitOrStay = Int32.Parse(Console.ReadLine());
+                    return hitOrStay;
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine($"Exception caught: {e.Message}\n" + "Try again! Hit or stay? (Hit = 1, Stay = 0)");
+                
+                }
+            }
+
         }
     }
 

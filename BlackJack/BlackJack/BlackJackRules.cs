@@ -91,11 +91,11 @@ namespace BlackJack
 
              if (dealerScore > 21 && gamblerScore <= 21)
              {
-                 winner = "Gambler winsz!";
+                 winner = "Gambler wins!";
              }
              if (dealerScore == gamblerScore)
              {
-                 winner = "Gambler winsz!";
+                 winner = "Gambler wins!";
              }
              
 

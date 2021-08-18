@@ -111,10 +111,10 @@ namespace BlackJack
 
             while (ShowCardSum() < 17)
             {
-                Console.WriteLine("- Dealer is at 2  " + ShowCardSum() + " \n  with the hand:   ["
+                Console.WriteLine("- Dealer is at " + ShowCardSum() + " \n  with the hand:   ["
                                   + ShowCard() + "]");
                 AddCard(deck.RemoveCardFromDeckOfCards());
-                Console.WriteLine("- Dealer draws 2  [" + ShowLastCard() + "]");
+                Console.WriteLine("- Dealer draws [" + ShowLastCard() + "]");
                
             }
         }

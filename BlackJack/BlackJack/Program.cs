@@ -10,9 +10,6 @@ namespace BlackJack
             Gambler gambler = new Gambler();
             BlackJackIO blackJackIO = new BlackJackIO();
             BlackJackRules blackJackRules = new BlackJackRules(blackJackIO);
-           // Gambler _gambler = new Gambler();
-            
-            
             var blackJack = new BlackJackEngine(blackJackRules, dealer, gambler);
             
             blackJack.Start();
